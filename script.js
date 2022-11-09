@@ -116,7 +116,7 @@ const arrIcons = [
 arrIcons.forEach(element => {
     const eleCard = document.querySelector(".container").innerHTML += `
     <div class="card">
-    <i class="${element.prefix}solid ${element.prefix}${element.name}"></i>
+    <i class="${element.prefix}solid ${element.prefix}${element.name}" style="color: ${element.color}"></i>
     <span class="icon-name">${element.name}</span>
     </div>` 
 })
