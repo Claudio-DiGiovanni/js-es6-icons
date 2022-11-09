@@ -113,10 +113,55 @@ const arrIcons = [
 	}
 ];
 
+const eleForm = document.querySelector("form");
+const eleSelect = document.querySelector("#options");
+const container = document.querySelector(".container");
+let arrTypeAnimal = [];
+let arrTypeVegetables = [];
+let arrTypeUser = [];
+
+
+
 arrIcons.forEach(element => {
-    const eleCard = document.querySelector(".container").innerHTML += `
-    <div class="card">
+    const eleCard = document.createElement("div")
+    eleCard.classList.add("card");
+    eleCard.innerHTML += `
     <i class="${element.prefix}solid ${element.prefix}${element.name}" style="color: ${element.color}"></i>
     <span class="icon-name">${element.name}</span>
-    </div>` 
+    `;
+    container.append(eleCard)
+    if (element.type == "animal") {
+        arrTypeAnimal.push(eleCard)
+    } else if (element.type == "vegetable") {
+        arrTypeVegetables.push(eleCard)
+    } else if (element.type == "user") {
+        arrTypeUser.push(eleCard)
+    }
+    
+
+});
+
+console.log(arrTypeAnimal);
+console.log(arrTypeVegetables);
+console.log(arrTypeUser);
+
+eleForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (eleSelect.value == "animal") {
+        arrTypeVegetables.forEach(element => element.classList.add("hidden"));
+        arrTypeUser.forEach(element => element.classList.add("hidden"));
+        arrTypeAnimal.forEach(element => element.classList.remove("hidden"));
+    } else if (eleSelect.value == "vegetable") {
+        arrTypeAnimal.forEach(element => element.classList.add("hidden"));
+        arrTypeUser.forEach(element => element.classList.add("hidden"));
+        arrTypeVegetables.forEach(element => element.classList.remove("hidden"));
+    } else if (eleSelect.value == "user") {
+        arrTypeAnimal.forEach(element => element.classList.add("hidden"));
+        arrTypeVegetables.forEach(element => element.classList.add("hidden"));
+        arrTypeUser.forEach(element => element.classList.remove("hidden"));
+    } else {
+        arrTypeAnimal.forEach(element => element.classList.remove("hidden"));
+        arrTypeVegetables.forEach(element => element.classList.remove("hidden"));
+        arrTypeUser.forEach(element => element.classList.remove("hidden"));
+    }
 })
