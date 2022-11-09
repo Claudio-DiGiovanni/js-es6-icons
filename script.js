@@ -119,6 +119,7 @@ const container = document.querySelector(".container");
 let arrTypeAnimal = [];
 let arrTypeVegetables = [];
 let arrTypeUser = [];
+let arrType = [];
 
 arrIcons.forEach(element => {
     const eleCard = document.createElement("div")
@@ -127,17 +128,27 @@ arrIcons.forEach(element => {
     <i class="${element.prefix}solid ${element.prefix}${element.name}"></i>
     <span class="icon-name">${element.name}</span>
     `;
-    container.append(eleCard)
+    container.append(eleCard);
     if (element.type == "animal") {
-        arrTypeAnimal.push(eleCard)
+        arrTypeAnimal.push(eleCard);
     } else if (element.type == "vegetable") {
-        arrTypeVegetables.push(eleCard)
+        arrTypeVegetables.push(eleCard);
     } else if (element.type == "user") {
-        arrTypeUser.push(eleCard)
-    }
-    eleCard.style.color = getRandomColor()
-
+        arrTypeUser.push(eleCard);
+    };
+    eleCard.style.color = getRandomColor();
+    
+    if (!arrType.includes(element.type)) {
+        arrType.push(element.type);
+    };
 });
+
+arrType.forEach(ele => {
+    const eleOption = document.createElement("option");
+    eleOption.value = ele;
+    eleOption.innerHTML = ele;
+    eleSelect.append(eleOption);
+})
 
 console.log(arrTypeAnimal);
 console.log(arrTypeVegetables);
