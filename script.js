@@ -120,13 +120,11 @@ let arrTypeAnimal = [];
 let arrTypeVegetables = [];
 let arrTypeUser = [];
 
-
-
 arrIcons.forEach(element => {
     const eleCard = document.createElement("div")
     eleCard.classList.add("card");
     eleCard.innerHTML += `
-    <i class="${element.prefix}solid ${element.prefix}${element.name}" style="color: ${element.color}"></i>
+    <i class="${element.prefix}solid ${element.prefix}${element.name}"></i>
     <span class="icon-name">${element.name}</span>
     `;
     container.append(eleCard)
@@ -137,7 +135,7 @@ arrIcons.forEach(element => {
     } else if (element.type == "user") {
         arrTypeUser.push(eleCard)
     }
-    
+    eleCard.style.color = getRandomColor()
 
 });
 
@@ -165,3 +163,12 @@ eleForm.addEventListener("submit", function (event) {
         arrTypeUser.forEach(element => element.classList.remove("hidden"));
     }
 })
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
